@@ -1,3 +1,4 @@
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 
@@ -18,6 +19,111 @@ import ReactDOM from "react-dom/client";
  *  - Address
  *  - Contact
  */
+
+const Header = () => {
+  return (
+    <div className="header">
+      <div className="logo-container">
+        <img
+          className="logo"
+          src="http://tinyurl.com/2mh2ncns"
+        />
+      </div>
+      
+      <div className="nav-items">
+        <ul>
+          <li>Home</li>
+          <li>About Us</li>
+          <li>Contact Us</li>
+          <li>Cart</li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+// Style in using javascript object
+const styleCard = {
+  backgroundColor: "#f0f0f0",
+};
+
+const resList = [
+  {
+    id: 13213,
+    resName: "KFC",
+    cuisine: "Burger, Fast Food",
+    deliveryTime: "45 minutes",
+    avgRating: "4.5",
+  },
+  {
+    id: 12131,
+    resName: "Mojo Food",
+    cuisine: "Paneer, Daal Tadka",
+    deliveryTime: "38 minutes",
+    avgRating: "4.9",
+  },
+  {
+    id: 15665,
+    resName: "Dawat Food",
+    cuisine: "Fried Rice",
+    deliveryTime: "1 hour",
+    avgRating: "4.1",
+  },
+];
+
+const RestaurantCard = (props) => {
+  // console.log(props)
+  const { resName, cuisine, avgRating, deliveryTime } = props.resData;
+  return (
+    <div
+      className="res-card"
+      style={{
+        backgroundColor: "#f0f0f0",
+      }}
+    >
+      <img
+        className="res-logo"
+        src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/c99751d54e4e1847186c62b3309c1327"
+        alt="res-logo"
+      />
+
+      <h3>{resName}</h3>
+      <h4>{cuisine}</h4>
+      <h4>{deliveryTime}</h4>
+      <h4>{avgRating} ⭐</h4>
+    </div>
+  );
+};
+const Body = () => {
+  return (
+    <div className="body">
+      <div className="search">Search</div>
+      <div className="res-container">
+        {/* <RestaurantCard resData = {resList[0]} />
+        <RestaurantCard resData = {resList[1]} />
+        <RestaurantCard resData = {resList[2]} /> */}
+        {/* Most effective way to display card  */}
+        {resList.map((restaurant) => (
+          <RestaurantCard key={restaurant.id} resData={restaurant} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const AppLayout = () => {
+  return (
+    <div className="app">
+      <Header />
+      <Body />
+    </div>
+  );
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<AppLayout />);
+
+
 // RestaurantList is JSON Data for displaying cards
 const restaurantList = [
   {
@@ -1836,102 +1942,3 @@ const restaurantList = [
     subtype: "basic",
   },
 ];
-
-const Header = () => {
-  return (
-    <div className="header">
-      <div className="logo-container">
-        <img
-          className="logo"
-          src="http://tinyurl.com/2mh2ncns"
-          alt="Food App logo"
-        />
-      </div>
-      <div className="nav-items">
-        <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Cart</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-
-const RestaurantCard = ({ resData }) => {
-  const {
-    cloudinaryImageId,
-    name,
-    cuisines,
-    area,
-    costForTwo,
-    deliveryTime,
-    avgRating,
-  } = resData;
-  return (
-    <div className="res-card">
-      <div className="img-container">
-        <img
-          className="res-logo"
-          src={
-            "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/" +
-            cloudinaryImageId
-          }
-          alt="Food Images"
-        />
-      </div>
-      <h2>{name}</h2>
-      <h3>Cuisines: {cuisines.join(", ")}</h3>
-      <h4>Area : {area}</h4>
-      <h4>Price : ₹{costForTwo / 100} FOR TWO</h4>
-      <h4>Delivery : {deliveryTime} Minutes</h4>
-      <h4>Rating : {avgRating} ⭐</h4>
-    </div>
-  );
-};
-
-const Footer = () => {
-  return (
-    <div className="footer">
-      <div className="footer-items">
-        Created By 💛
-        <a href="https://www.linkedin.com/in/bhavesh-wagh27/" target="_blank">
-          Bhavesh Wagh
-        </a>
-        <div>&copy; {new Date().getFullYear()}</div>
-        <strong>
-          Foodiiiee<span>Fi</span>
-        </strong>
-      </div>
-    </div>
-   
-  );
-};
-
-const Body = () => {
-  return (
-    <div className="body">
-      <div className="search">Search</div>
-      <div className="res-container">
-        {restaurantList.map((res) => (
-          <RestaurantCard key={res.data.id} resData={res.data} />
-          // or using spread operator{..res.data}
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const AppLayout = () => {
-  return (
-    <div className="app">
-      <Header />
-      <Body />
-      <Footer />
-    </div>
-  );
-};
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />);
