@@ -1,68 +1,52 @@
 import RestaurantCard from "./RestaurantCard";
-import restaurantList from "../utils/restaurantList";
-import { useState } from "react";
+// import restaurantList from "../utils/restaurantList";
+import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 const Body = () => {
   // state Variable - Super powerful variable
-
-  const [listOfRest, setListOfRest] = useState(restaurantList);
+  const [listOfRest, setListOfRest] = useState([]);
 
   const [searchText, setSearchText] = useState("");
 
-  //   let listOfRest = [
-  //     {
-  //       data: {
-  //         id: 334475,
-  //         name: "Domino's Pizza",
-  //         cloudinaryImageId: "bz9zkh2aqywjhpankb07",
-  //         cuisines: ["Pizzas"],
-  //         costForTwo: 4000,
-  //         deliveryTime: 36,
-  //         avgRating: "4.5",
-  //       },
-  //     },
-  //     {
-  //       data: {
-  //         id: 334475,
-  //         name: "Ice CREAM",
-  //         cloudinaryImageId: "bz9zkh2aqywjhpankb07",
-  //         cuisines: ["Desserts", "Ice Cream", "Healthy Food"],
-  //         costForTwo: 4000,
-  //         deliveryTime: 36,
-  //         avgRating: "3.5",
-  //       },
-  //     },
-  //     {
-  //       data: {
-  //         id: 334475,
-  //         name: "KFC",
-  //         cloudinaryImageId: "bz9zkh2aqywjhpankb07",
-  //         cuisines: ["Pizzas"],
-  //         costForTwo: 4000,
-  //         deliveryTime: 36,
-  //         avgRating: "4.2",
-  //       },
-  //     },
-  //   ];
+  useEffect(() => {
+    fetchData();  
+  }, []);
+
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
+    );
+
+    const json = await data.json();
+
+    // console.log(json.data.cards[3].card.card.gridElements.infoWithStyle.restaurants)
+    // Optional Chaining
+    setListOfRest(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+  };
+
+  // console.log("Body rendered")
+
   const filterData = (searchText, listOfRest) => {
     const filteredData = listOfRest.filter((res) =>
-      res?.data?.name.toLowerCase().includes(searchText.toLowerCase())
+      res?.info?.name.toLowerCase().includes(searchText.toLowerCase())
     );
-     console.log(filteredData)
-     console.log(typeof(filteredData))
     return filteredData;
   };
+
+  const handleTopRated = () => {
+    filteredList = listOfRest.filter((res) => res?.info?.avgRating > 4);
+    console.log(filteredList);
+    setListOfRest(filteredList);
+  };
+
+  if(listOfRest.length === 0){
+    return <Shimmer/>
+  }
 
   return (
     <div className="body">
       <div className="filter">
-        <button
-          className="filter-btn"
-          onClick={() => {
-            filteredList = listOfRest.filter((res) => res.data.avgRating > 4);
-            // console.log(filteredList);
-            setListOfRest(filteredList);
-          }}
-        >
+        <button className="filter-btn" onClick={handleTopRated}>
           Top Rated Restaurant
         </button>
       </div>
@@ -88,7 +72,7 @@ const Body = () => {
 
       <div className="res-container">
         {listOfRest.map((res) => (
-          <RestaurantCard key={res.data.id} resData={res.data} />
+          <RestaurantCard key={res.info.id} resData={res.info} />
           // or using spread operator{..res.data}
         ))}
       </div>
@@ -97,3 +81,39 @@ const Body = () => {
 };
 
 export default Body;
+
+//   let listOfRest = [
+//     {
+//       data: {
+//         id: 334475,
+//         name: "Domino's Pizza",
+//         cloudinaryImageId: "bz9zkh2aqywjhpankb07",
+//         cuisines: ["Pizzas"],
+//         costForTwo: 4000,
+//         deliveryTime: 36,
+//         avgRating: "4.5",
+//       },
+//     },
+//     {
+//       data: {
+//         id: 334475,
+//         name: "Ice CREAM",
+//         cloudinaryImageId: "bz9zkh2aqywjhpankb07",
+//         cuisines: ["Desserts", "Ice Cream", "Healthy Food"],
+//         costForTwo: 4000,
+//         deliveryTime: 36,
+//         avgRating: "3.5",
+//       },
+//     },
+//     {
+//       data: {
+//         id: 334475,
+//         name: "KFC",
+//         cloudinaryImageId: "bz9zkh2aqywjhpankb07",
+//         cuisines: ["Pizzas"],
+//         costForTwo: 4000,
+//         deliveryTime: 36,
+//         avgRating: "4.2",
+//       },
+//     },
+//   ];
