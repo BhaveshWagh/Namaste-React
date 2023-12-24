@@ -106,3 +106,15 @@ const Example = (props) => {
   return <div />;
 }
 ```
+
+The `useState` Hook is a special function that lets you add React state to function components. Here are some reasons why we need the `useState` Hook:
+
+1. **State in Function Components**: Before Hooks were introduced, you could only use state in class components. But with `useState`, you can now use state in function components.
+
+2. **Re-rendering**: When the state changes, the component re-renders. Without `useState`, if you try to increment a counter by clicking on a button, the count will not change because React rendered the component only once and since there is no state change, it won't get re-rendered.
+
+3. **Simplicity**: The `useState` Hook simplifies the React API overall and makes it much easier for developers to add state to their functional components.
+
+4. **Isolation of Stateful Logic**: Each call to `useState` creates a separate piece of state, and each piece of state is isolated from each other. This makes it easier to reason about your state as you can avoid bugs that come from state being merged together.
+
+5. **Functional Updates**: The update function returned by `useState` (the second element in the array) can accept a function as an argument for functional updates. This is useful when the new state depends on the previous one.

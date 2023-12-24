@@ -55,6 +55,26 @@ import {Component} from "path";
 
 React Hooks is basically (Normal JS utility functions)
 
-- useState() - Superpowerfull state Variable in react
-- useEffect(()=>{}, []) 
+    useState() - Superpowerfull state Variable in react
+    
+ `Syntax : useEffect( () => {}, [] ) `
 
+# Two Approaches to make an api call 
+
+### First Approach
+
+- As soon as page loads we can make api call and wait for response after get response then we render the UI 
+
+`Loads => API call(wait for resp) => Render`
+
+### Second Approach
+
+- As soon as page loads just render it whatever have just render it then make an api call then re-render it 
+
+- In React we use this approach. This is the better approach and It gives better UX (User Experience) 
+
+- If u think it render twice it can't matters because react renders your UI very fast  
+
+`Loads => Render => API call => Rerender `
+
+We can implement second approach using useEffect() hook 

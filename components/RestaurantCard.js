@@ -5,7 +5,7 @@ const RestaurantCard = ({ resData }) => {
     cloudinaryImageId,
     name,
     cuisines,
-    area,
+    areaName,
     costForTwo,
     deliveryTime,
     avgRating,
@@ -24,7 +24,7 @@ const RestaurantCard = ({ resData }) => {
       </div>
       <h2>{name}</h2>
       <h3>Cuisines: {cuisines.join(", ")}</h3>
-      <h4>Area : {area}</h4>
+      <h4>Area : {areaName}</h4>
       <h4>Price : ₹{costForTwo / 100} FOR TWO</h4>
       <h4>Delivery : {deliveryTime} Minutes</h4>
       <h4>Rating : {avgRating} ⭐</h4>
