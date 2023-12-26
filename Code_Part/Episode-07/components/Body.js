@@ -87,6 +87,11 @@ const Body = () => {
 
 export default Body;
 
+
+// 
+<Link  to={"/restaurants/" + res.info.id} key={res.info.id}>
+</Link>
+
 // Conditional rendering
 // if(listOfRest.length === 0){
 //   return <Shimmer/>
