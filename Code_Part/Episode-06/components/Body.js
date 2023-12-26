@@ -1,10 +1,9 @@
 import RestaurantCard from "./RestaurantCard";
+// import restaurantList from "../utils/restaurantList";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 
 const Body = () => {
-  ``;
   // state Variable - Super powerful variable
   const [listOfRest, setListOfRest] = useState([]);
   const [listOfFilterRest, setListOfFilterRest] = useState([]);
@@ -31,13 +30,13 @@ const Body = () => {
     setListOfFilterRest(
       json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    // console.log(
-    //   json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    // );
+    console.log(
+      json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
   };
 
   const handleTopRated = () => {
-    filteredList = listOfRest.filter((res) => res?.info?.avgRating > 4.2);
+    filteredList = listOfRest.filter((res) => res?.info?.avgRating > 4);
     setListOfRest(filteredList);
   };
 
@@ -50,7 +49,7 @@ const Body = () => {
 
   // Conditional Rendering
 
-  return listOfRest?.length === 0 ? (
+  return listOfRest.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
@@ -75,10 +74,9 @@ const Body = () => {
       </div>
 
       <div className="res-container">
-        {listOfFilterRest?.map((res) => (
-          <Link  to={"/restaurants/" + res.info.id} key={res.info.id}>
-            <RestaurantCard resData={res.info} />
-          </Link>
+        {listOfFilterRest.map((res) => (
+          <RestaurantCard key={res.info.id} resData={res.info} />
+          // or using spread operator{..res.data}
         ))}
       </div>
     </div>

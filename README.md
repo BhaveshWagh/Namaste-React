@@ -78,3 +78,8 @@ React Hooks is basically (Normal JS utility functions)
 `Loads => Render => API call => Rerender `
 
 We can implement second approach using useEffect() hook 
+
+#  There are 2 Types of Routing in web apps
+
+- Client Side Routing
+- Server Side Routing
