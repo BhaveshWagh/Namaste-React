@@ -50,36 +50,64 @@ import Component from "path";
 export const Component;
 import {Component} from "path";
 
-
 # React Hooks
 
 React Hooks is basically (Normal JS utility functions)
 
     useState() - Superpowerfull state Variable in react
-    
- `Syntax : useEffect( () => {}, [] ) `
 
-# Two Approaches to make an api call 
+`Syntax : useEffect( () => {}, [] ) `
+
+# Two Approaches to make an api call
 
 ### First Approach
 
-- As soon as page loads we can make api call and wait for response after get response then we render the UI 
+- As soon as page loads we can make api call and wait for response after get response then we render the UI
 
 `Loads => API call(wait for resp) => Render`
 
 ### Second Approach
 
-- As soon as page loads just render it whatever have just render it then make an api call then re-render it 
+- As soon as page loads just render it whatever have just render it then make an api call then re-render it
 
-- In React we use this approach. This is the better approach and It gives better UX (User Experience) 
+- In React we use this approach. This is the better approach and It gives better UX (User Experience)
 
-- If u think it render twice it can't matters because react renders your UI very fast  
+- If u think it render twice it can't matters because react renders your UI very fast
 
 `Loads => Render => API call => Rerender `
 
-We can implement second approach using useEffect() hook 
+- We can implement second approach using useEffect() hook
 
-#  There are 2 Types of Routing in web apps
+
+## useEffect
+
+`If no dependency array => useEffect is called on every render`
+
+    import {useEffect} from 'react;
+    useEffect( () => {} )
+
+`If dependency array is empty = [] => useEffect is called on initial render(just once)`
+
+    import {useEffect} from 'react;
+    useEffect( () => {}, [] )
+
+`If dependency array is [btnName] => called everytime btnName is updated`
+
+    import {useEffect} from 'react;
+    useEffect( () => {}, [btnName])
+
+## useState
+
+Syntax:
+
+    import {useState} from 'react;
+    const [btnName,setBtnName] = useState("Login")
+
+- Whenever state variables update, react triggers a reconciliation cycle(re-renders the component)
+
+
+# There are 2 Types of Routing in web apps
 
 - Client Side Routing
+
 - Server Side Routing
