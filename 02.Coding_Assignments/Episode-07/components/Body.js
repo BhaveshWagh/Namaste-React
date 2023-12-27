@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 
 const Body = () => {
-  ``;
   // state Variable - Super powerful variable
   const [listOfRest, setListOfRest] = useState([]);
   const [listOfFilterRest, setListOfFilterRest] = useState([]);
@@ -26,10 +25,10 @@ const Body = () => {
 
     // Optional Chaining
     setListOfRest(
-      json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setListOfFilterRest(
-      json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     // console.log(
     //   json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants

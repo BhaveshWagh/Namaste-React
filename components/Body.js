@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 
 const Body = () => {
-  ``;
   // state Variable - Super powerful variable
   const [listOfRest, setListOfRest] = useState([]);
   const [listOfFilterRest, setListOfFilterRest] = useState([]);
@@ -24,16 +23,15 @@ const Body = () => {
 
     const json = await data.json();
 
+    console.log(json);
+
     // Optional Chaining
     setListOfRest(
-      json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setListOfFilterRest(
-      json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    // console.log(
-    //   json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    // );
   };
 
   const handleTopRated = () => {
@@ -76,7 +74,7 @@ const Body = () => {
 
       <div className="res-container">
         {listOfFilterRest?.map((res) => (
-          <Link  to={"/restaurants/" + res.info.id} key={res.info.id}>
+          <Link to={"/restaurants/" + res.info.id} key={res.info.id}>
             <RestaurantCard resData={res.info} />
           </Link>
         ))}
@@ -86,63 +84,3 @@ const Body = () => {
 };
 
 export default Body;
-
-// Conditional rendering
-// if(listOfRest.length === 0){
-//   return <Shimmer/>
-// }
-
-// Below used ternary operator
-
-// Syntax : condition ? true : false
-
-// console.log("Body rendered")
-
-// const filterData = (searchText, listOfRest) => {
-//   const filteredData = listOfRest.filter((res) =>
-//     res?.info?.name.toLowerCase().includes(searchText.toLowerCase())
-//   );
-//   return filteredData;
-// };
-// const data = filterData(searchText, listOfRest);
-// setListOfRest(data);
-
-// search logic for text
-// const filteredList = listOfRest.filter((res) => res.info.name.toLowerCase().includes(searchText.toLowerCase()))
-// setListOfRest(filteredList)
-
-//   let listOfRest = [
-//     {
-//       data: {
-//         id: 334475,
-//         name: "Domino's Pizza",
-//         cloudinaryImageId: "bz9zkh2aqywjhpankb07",
-//         cuisines: ["Pizzas"],
-//         costForTwo: 4000,
-//         deliveryTime: 36,
-//         avgRating: "4.5",
-//       },
-//     },
-//     {
-//       data: {
-//         id: 334475,
-//         name: "Ice CREAM",
-//         cloudinaryImageId: "bz9zkh2aqywjhpankb07",
-//         cuisines: ["Desserts", "Ice Cream", "Healthy Food"],
-//         costForTwo: 4000,
-//         deliveryTime: 36,
-//         avgRating: "3.5",
-//       },
-//     },
-//     {
-//       data: {
-//         id: 334475,
-//         name: "KFC",
-//         cloudinaryImageId: "bz9zkh2aqywjhpankb07",
-//         cuisines: ["Pizzas"],
-//         costForTwo: 4000,
-//         deliveryTime: 36,
-//         avgRating: "4.2",
-//       },
-//     },
-//   ];
