@@ -1,5 +1,4 @@
-# Episode-07 - Finding the Path
-
+# Assignment Episode-07
 ## Q: What are various ways to `add images` into our App? Explain with `code examples`.
 A: Using the `full URL of the image` for the web (CDN) or any public images.
 Example : 

@@ -121,7 +121,7 @@ In Server-side routing (SSR), every change in URL, http request is made to serve
 
 # React Life-Cycle Method for multiple children's
 
-![Alt text](image.png)
+![Alt text](./image.png)
 
 - Parent Constructor
 - Parent render
