@@ -1,6 +1,7 @@
 import React from "react";
 
 import UserClass from "./UserClass";
+import User from "./User";
 
 class About extends React.Component {
   constructor(props) {
@@ -19,7 +20,8 @@ class About extends React.Component {
       <div>
         <h1>AboutUs</h1>
         <h2>This is Namaste React Web Series</h2>
-        <UserClass name={"First"} location={"Pune class"} />
+        {/* <UserClass name={"First"} location={"Pune class"} /> */}
+        <User name={"First"} location={"Pune class"} />
       </div>
     );
   }

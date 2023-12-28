@@ -140,7 +140,7 @@ In Server-side routing (SSR), every change in URL, http request is made to serve
   - First ComponentDidMount
   - Second ComponentDidMount
 
-- Parent ComponentDidMount
+- Parent ComponentDidMount-
 
 > Image Source : https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
 
@@ -223,6 +223,14 @@ export default UserClass;
 
 # How React Life-cylce method works behind the scene, When we make an api call using componentDidMount
 
+
+## : Note Never ever compare your reacts life cycle method to functional component 
+
+> useEffect != componentDidMount
+
+> Mount and update both are different things
+
+
 - MOUNTING
 
   > Constructor (dummy)
@@ -256,3 +264,20 @@ export default UserClass;
 - Parent Component Did Mount
 - FirstChild Render
 - Component Did Update
+
+# ComponentDidUpdate :
+
+- The component did update method is called after every update
+ex: with the 
+
+`Syntax : componentDidUpdate(){}`
+
+# ComponentWillUnMount : 
+
+- Component will unmount called when we leaving a page 
+
+- When you creating mess then you have to clean up also
+
+ ComponentWillUnMount(){
+  clearInterval(this.variableName)
+ }
