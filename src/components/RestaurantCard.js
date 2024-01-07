@@ -1,4 +1,4 @@
-import { LOGO_URL } from "../src/constants";
+import { LOGO_URL } from "../constants";
 
 const RestaurantCard = ({ resData }) => {
   const {

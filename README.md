@@ -223,13 +223,11 @@ export default UserClass;
 
 # How React Life-cylce method works behind the scene, When we make an api call using componentDidMount
 
-
-## : Note Never ever compare your reacts life cycle method to functional component 
+## : Note Never ever compare your reacts life cycle method to functional component
 
 > useEffect != componentDidMount
 
 > Mount and update both are different things
-
 
 - MOUNTING
 
@@ -255,7 +253,6 @@ export default UserClass;
 
   > Component Did Update
 
-
 - Parent Constructor
 - Parent Render
 - FirstChild Constructor
@@ -268,16 +265,50 @@ export default UserClass;
 # ComponentDidUpdate :
 
 - The component did update method is called after every update
-ex: with the 
+  ex: with the
 
 `Syntax : componentDidUpdate(){}`
 
-# ComponentWillUnMount : 
+# ComponentWillUnMount :
 
-- Component will unmount called when we leaving a page 
+- Component will unmount called when we leaving a page
 
 - When you creating mess then you have to clean up also
 
- ComponentWillUnMount(){
-  clearInterval(this.variableName)
- }
+ComponentWillUnMount(){
+clearInterval(this.variableName)
+}
+
+## Very imp : Optimize Our App
+
+Smaller Logical Chunks for Large Scale Application
+
+When our bunddle size increasing so to reduce the size we do this code splitting / chuncking / lazy loading when we do this all the code does not come at once and it will only come when it is requested.
+
+So that your request for that js file does not become so heavy that take's a lot off time to get into the browser thats why we use below thing chuncking
+
+- Chunking
+- Code splitting
+- Dynamic Bundling
+- Lazy Loading (on required) : means when we go to the grocery then load this initial don't load that component
+- On demand loading
+- dynamic import
+
+This is how we distribute our application into smaller chunks
+This is how you improve performance
+
+
+```jsx
+import React, { lazy, Suspense } from "react";
+
+const Grocery = lazy(() => import("./components/Grocery"));
+
+      {
+        path: "/grocery",
+        element: (
+          <Suspense fallback={<h1>Loading....</h1>}>
+            <Grocery />
+          </Suspense>
+        ),
+      },
+```
