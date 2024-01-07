@@ -1,4 +1,4 @@
-import { LINKEDIN_URL } from "../src/constants";
+import { LINKEDIN_URL } from "../constants";
 const Footer = () => {
   return (
     <div className="footer">
