@@ -11,15 +11,15 @@ const RestaurantCard = ({ resData }) => {
     avgRating,
   } = resData;
   return (
-    <div className="res-card">
+    <div className="m-4 p-4 w-[250px] shadow-lg rounded-xl text-center">
       <div className="img-container">
         <img
-          className="res-logo"
+          className="res-logo rounded-lg"
           src={LOGO_URL + cloudinaryImageId}
           alt="Food Images"
         />
       </div>
-      <h2>{name}</h2>
+      <h2 className="font-bold py-4 text-lg">{name}</h2>
       <h3>Cuisines: {cuisines.join(", ")}</h3>
       <h4>Area : {areaName}</h4>
       <h4>Price : {costForTwo} </h4>
