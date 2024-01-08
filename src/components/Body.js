@@ -49,10 +49,13 @@ const Body = () => {
 
   // Check online or not
 
-  const onlineStatus = useOnlineStatus()
-  if(onlineStatus === false) return (
-    <h1>Looks like you're offline! Please check your internet connection...</h1>
-  )
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false)
+    return (
+      <h1>
+        Looks like you're offline! Please check your internet connection...
+      </h1>
+    );
 
   // Conditional Rendering
 
@@ -60,27 +63,28 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div>
-          <button className="filter-btn" onClick={handleTopRated}>
+      <div className="filter flex justify-center">
+        <div className="search m-4 p-4 flex items-center" >
+          <button className="px-4 py-2 bg-gray-100 rounded-lg" onClick={handleTopRated}>
             Top Rated Restaurants
           </button>
         </div>
-        <div className="search-container">
+
+        <div className="search m-4 p-4">
           <input
             type="text"
-            className="search-input"
-            placeholder="Search restaurant name here"
+            className="border border-solid border-black rounded-xl"
+            placeholder="Search restaurant name"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
-          <button className="search-btn" onClick={handleSearch}>
+          <button className="px-4 py-1 bg-green-200 m-4 rounded-lg" onClick={handleSearch}>
             Search
           </button>
         </div>
       </div>
 
-      <div className="res-container">
+      <div className="flex flex-wrap justify-center">
         {listOfFilterRest?.map((res) => (
           <Link to={"/restaurants/" + res.info.id} key={res.info.id}>
             <RestaurantCard resData={res.info} />
