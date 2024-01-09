@@ -8,12 +8,12 @@ const useRestaurantMenu = (resId) => {
     fetchData();
   }, []);
 
-  const fetchData = async () => {
+  async function fetchData() {
     const data = await fetch(MENU_API + resId);
     const json = await data.json();
-    setResInfo(json.data)
-  };
-
+    setResInfo(json.data);
+    console.log(json.data);
+  }
   return resInfo;
 };
 

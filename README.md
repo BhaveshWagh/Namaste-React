@@ -297,7 +297,6 @@ So that your request for that js file does not become so heavy that take's a lot
 This is how we distribute our application into smaller chunks
 This is how you improve performance
 
-
 ```jsx
 import React, { lazy, Suspense } from "react";
 
@@ -312,3 +311,70 @@ const Grocery = lazy(() => import("./components/Grocery"));
         ),
       },
 ```
+
+## Higher Order Component
+
+#### Higher-order components (HOCs) are a powerful feature of the React library. They allow you to reuse component logic across multiple components.
+
+In React, a higher-order component is a function that takes a component as an argument and returns a new component that wraps the original component.
+Take input - RestaurantCard ==> RestaurantCardPromoted => and return a inhanced component ont the top of it
+
+##### Benefits of Using Higher-Order Components in React
+
+- Reusability: HOCs allow you to reuse component logic across multiple components, which can save time and reduce code duplication.
+
+- Flexibility: HOCs can take additional arguments, which allows you to customize the behavior of the HOC. This makes them a flexible way to add functionality to your components.
+
+- Separation of concerns: HOCs can help separate concerns in your code by encapsulating certain functionality in a separate component. This can make the code easier to read and maintain.
+
+- Composition: HOCs can be composed together to create more complex functionality. This allows you to build up functionality from smaller, reusable pieces.
+
+- Higher-order components can be used to implement cross-cutting concerns in your application such as authentication, error handling, logging, performance tracking, and many other features.
+
+##### When to Use HOCs in your React Code
+
+- Authentication
+Suppose you have an application with various routes, some of which require the user to be authenticated before accessing them.
+
+- Instead of duplicating the authentication logic in each component or route, you can create an HOC called withAuth that checks if the user is authenticated and redirects them to the login page if not. Then, you can wrap the specific components or routes that need authentication with this HOC, reducing duplication and enforcing consistent authentication behavior.
+
+- Logging
+Imagine you want to log some data every time a specific set of components mount or update. Rather than adding the logging logic to each component, you can create an HOC called withLogger that handles the logging functionality.
+
+- By wrapping the relevant components with withLogger, you can achieve consistent logging across those components.
+
+- Styling and Theming
+You might have a design system with reusable styles and themes. You can create an HOC named withTheme that provides the necessary theme-related props to a component.
+
+This way, the wrapped component can easily access and apply the appropriate styles based on the provided theme.
+
+```jsx
+// RestaurantCard.js
+
+export const withPromotedLabel = (RestaurantCard) => {
+  // New Component
+  return (props) => {
+    return (
+      <div>
+        <label className="absolute bg-black text-white m-2 p-2 rounded-lg">
+          Promoted
+        </label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
+};
+
+//Body.js
+const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
+
+{
+  /** if the restaurant is promoted then add a promoted label to it*/
+  res.info.promoted ? (
+    <RestaurantCardPromoted resData={res.info} />
+  ) : (
+    <RestaurantCard resData={res.info} />
+  );
+}
+```
+reference : https://www.freecodecamp.org/news/higher-order-components-in-react/#:~:text=Higher%2Dorder%20components%20(HOCs),that%20wraps%20the%20original%20component.
