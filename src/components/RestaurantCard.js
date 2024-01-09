@@ -10,6 +10,7 @@ const RestaurantCard = ({ resData }) => {
     sla,
     avgRating,
   } = resData;
+
   return (
     <div className="m-4 p-4 w-[250px] shadow-lg rounded-xl text-center">
       <div className="img-container">
@@ -27,6 +28,23 @@ const RestaurantCard = ({ resData }) => {
       <h4>Rating : {avgRating} ⭐</h4>
     </div>
   );
+};
+
+// Higher Order Component
+
+// Take input - RestaurantCard ==> RestaurantCardPromoted
+// and return a inhanced component ont the top of it
+
+export const withPromotedLabel = (RestaurantCard) => {
+  // New Component
+  return (props) => {
+    return (
+      <div>
+        <label className="absolute bg-black text-white m-2 p-2 rounded-lg">Promoted</label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
 };
 
 export default RestaurantCard;

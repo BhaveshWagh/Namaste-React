@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
@@ -10,6 +10,8 @@ const Body = () => {
   const [listOfFilterRest, setListOfFilterRest] = useState([]);
 
   const [searchText, setSearchText] = useState("");
+
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
   // Whenever state variables update, react triggers a reconciliation cycle(re-renders the component)
 
@@ -24,7 +26,7 @@ const Body = () => {
 
     const json = await data.json();
 
-    console.log(json);
+    console.log(json?.data);
 
     // Optional Chaining
     setListOfRest(
@@ -57,6 +59,8 @@ const Body = () => {
       </h1>
     );
 
+  // MENU API
+
   // Conditional Rendering
 
   return listOfRest?.length === 0 ? (
@@ -64,8 +68,11 @@ const Body = () => {
   ) : (
     <div className="body">
       <div className="filter flex justify-center">
-        <div className="search m-4 p-4 flex items-center" >
-          <button className="px-4 py-2 bg-gray-100 rounded-lg" onClick={handleTopRated}>
+        <div className="search m-4 p-4 flex items-center">
+          <button
+            className="px-4 py-2 bg-gray-100 rounded-lg"
+            onClick={handleTopRated}
+          >
             Top Rated Restaurants
           </button>
         </div>
@@ -78,7 +85,10 @@ const Body = () => {
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
-          <button className="px-4 py-1 bg-green-200 m-4 rounded-lg" onClick={handleSearch}>
+          <button
+            className="px-4 py-1 bg-green-200 m-4 rounded-lg"
+            onClick={handleSearch}
+          >
             Search
           </button>
         </div>
@@ -87,7 +97,14 @@ const Body = () => {
       <div className="flex flex-wrap justify-center">
         {listOfFilterRest?.map((res) => (
           <Link to={"/restaurants/" + res.info.id} key={res.info.id}>
-            <RestaurantCard resData={res.info} />
+            {
+              /** if the restaurant is promoted then add a promoted label to it*/
+              res.info.promoted ? (
+                <RestaurantCardPromoted resData={res.info} />
+              ) : (
+                <RestaurantCard resData={res.info} />
+              )
+            }
           </Link>
         ))}
       </div>
