@@ -1,4 +1,5 @@
 import ItemsList from "./ItemsList";
+import NestedRestaurantCategory from "./NestedRestaurantCategory";
 
 const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
   // By default close
@@ -7,7 +8,7 @@ const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
     setShowIndex();
   };
 
-  console.log("Data",data)
+  console.log("Data", data);
   return (
     <div>
       {/* { Accordion Header } */}
@@ -16,13 +17,12 @@ const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
           className="flex justify-between cursor-pointer"
           onClick={handleClick}
         >
-          <span className="font-bold text-lg">
-            {data.title} 
-          </span>
+          <span className="font-bold text-lg">{data.title}</span>
           <span>🔽</span>
         </div>
         {/* { Accordion Body } */}
-        {showItems && <ItemsList items={data.categories}/>}
+        {/* {showItems && <ItemsList items={data.categories} />} */}
+        {showItems && <NestedRestaurantCategory nestItems={data.categories} />}
       </div>
     </div>
   );
