@@ -8,7 +8,7 @@ import { LOGO_URL } from "../constants";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
-  
+
   // Custome hook used here
   const resInfo = useRestaurantMenu(resId);
 
@@ -24,7 +24,7 @@ const RestaurantMenu = () => {
     );
   console.log("***Resinfo", resInfo);
   console.log(
-    "****",
+    "***",
     resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
   );
 
