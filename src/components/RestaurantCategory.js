@@ -6,6 +6,7 @@ const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
 
   const handleClick = () => {
     setShowIndex();
+    console.log("resMenuClicked")
   };
 
   console.log("Data", data);
@@ -21,7 +22,7 @@ const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
           <span>🔽</span>
         </div>
         {/* { Accordion Body } */}
-        {showItems && <ItemsList items={data.categories} />}
+        {/* {showItems && <ItemsList items={data.categories} />} */}
         {showItems && <NestedRestaurantCategory nestItems={data.categories} />}
       </div>
     </div>

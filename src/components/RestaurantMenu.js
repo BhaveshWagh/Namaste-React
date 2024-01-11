@@ -22,11 +22,12 @@ const RestaurantMenu = () => {
         cat.card?.["card"]?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
     );
-  console.log("***Resinfo", resInfo);
-  console.log(
-    "***",
-    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
-  );
+    
+  // console.log("***Resinfo", resInfo);
+  // console.log(
+  //   "***",
+  //   resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+  // );
 
   return (
     <div className="menu text-center">
@@ -61,3 +62,7 @@ export default RestaurantMenu;
 //   resInfo?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
 
 // console.log(resInfo?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+// 
+
+// || cat.card?.["card"]?.["@type"] ===
+// "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
