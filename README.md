@@ -378,3 +378,41 @@ const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 }
 ```
 reference : https://www.freecodecamp.org/news/higher-order-components-in-react/#:~:text=Higher%2Dorder%20components%20(HOCs),that%20wraps%20the%20original%20component.
+
+
+
+## Redux Toolkit
+
+![Alt text](image-1.png)
+![Alt text](image-2.png)
+
+  - Install @reduxjs/toolkit and react-redux 
+  - Build our store
+  - Connect our store to our app
+  - Slice (cartSlice)
+  - dispatch(action)
+  - Selector
+
+
+
+
+```jsx
+import { createSlice } from "@reduxjs/toolkit";
+
+const  cartSlice = createSlice({
+    // It takes a configuration to create a slice
+    name:"cart",
+    initialState:{
+        items:[],
+    },
+    reducers:{
+         addItem: (state, action) => {
+
+         }
+    }
+})
+```
+
+` "addItem" => is an 'action'`
+
+` "(state, action) => {}" =>  this is the 'reducer' function now its modify the state based on the action `
