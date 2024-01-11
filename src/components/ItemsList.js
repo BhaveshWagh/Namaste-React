@@ -1,8 +1,9 @@
 import { LOGO_URL } from "../constants";
 
 const ItemsList = ({ items }) => {
-  // console.log(items);
- 
+  console.log(items);
+  console.log("Itemslist[0]",items[0].itemCards[0].card.info.name)
+
   return (
     <div>
       {items?.map((item) => (
@@ -12,6 +13,9 @@ const ItemsList = ({ items }) => {
         >
           <div className="w-9/12">
             <div className="py-2">
+            
+            
+
               {/* <span className="font-semibold">{item.card.info.name}</span> */}
               {/* <span>
                 {" "}

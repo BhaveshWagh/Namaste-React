@@ -21,7 +21,7 @@ const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
           <span>🔽</span>
         </div>
         {/* { Accordion Body } */}
-        {/* {showItems && <ItemsList items={data.categories} />} */}
+        {showItems && <ItemsList items={data.categories} />}
         {showItems && <NestedRestaurantCategory nestItems={data.categories} />}
       </div>
     </div>
