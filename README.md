@@ -416,3 +416,24 @@ const  cartSlice = createSlice({
 ` "addItem" => is an 'action'`
 
 ` "(state, action) => {}" =>  this is the 'reducer' function now its modify the state based on the action `
+
+ Vanilla(Older) Redux => DON'T MUTATE STATE, returning was mandatory
+       
+       const newState = [...state];
+       newState.items.push(action.payload)
+       return newState; 
+
+       Redux Toolkit uses immer js behind the scene BTS
+       It does not give option to mutate
+       We HAVE to mutate the state 
+
+## Immer
+
+Immer (German for: always) is a tiny package that allows you to work with immutable state in a more convenient way.
+
+### How Immer works
+
+The basic idea is that with Immer you will apply all your changes to a temporary draft, which is a proxy of the currentState. Once all your mutations are completed, Immer will produce the nextState based on the mutations to the draft state. This means that you can interact with your data by simply modifying it while keeping all the benefits of immutable data.
+
+![Alt text](image-3.png)
+ref : https://immerjs.github.io/immer/
