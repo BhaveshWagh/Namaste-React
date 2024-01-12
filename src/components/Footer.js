@@ -7,7 +7,7 @@ const Footer = () => {
         <a href={LINKEDIN_URL} target="_blank" className="px-2">
           Bhavesh Wagh
         </a>
-        <div>&copy; {new Date().getFullYear()} All Rights Reserved</div>
+        <div>&copy; 2023 - {new Date().getFullYear()} All Rights Reserved</div>
         <strong className="px-2">
           Foodiiiee<span>Fi</span>
         </strong>
