@@ -334,17 +334,17 @@ Take input - RestaurantCard ==> RestaurantCardPromoted => and return a inhanced 
 ##### When to Use HOCs in your React Code
 
 - Authentication
-Suppose you have an application with various routes, some of which require the user to be authenticated before accessing them.
+  Suppose you have an application with various routes, some of which require the user to be authenticated before accessing them.
 
 - Instead of duplicating the authentication logic in each component or route, you can create an HOC called withAuth that checks if the user is authenticated and redirects them to the login page if not. Then, you can wrap the specific components or routes that need authentication with this HOC, reducing duplication and enforcing consistent authentication behavior.
 
 - Logging
-Imagine you want to log some data every time a specific set of components mount or update. Rather than adding the logging logic to each component, you can create an HOC called withLogger that handles the logging functionality.
+  Imagine you want to log some data every time a specific set of components mount or update. Rather than adding the logging logic to each component, you can create an HOC called withLogger that handles the logging functionality.
 
 - By wrapping the relevant components with withLogger, you can achieve consistent logging across those components.
 
 - Styling and Theming
-You might have a design system with reusable styles and themes. You can create an HOC named withTheme that provides the necessary theme-related props to a component.
+  You might have a design system with reusable styles and themes. You can create an HOC named withTheme that provides the necessary theme-related props to a component.
 
 This way, the wrapped component can easily access and apply the appropriate styles based on the provided theme.
 
@@ -377,55 +377,49 @@ const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
   );
 }
 ```
+
 reference : https://www.freecodecamp.org/news/higher-order-components-in-react/#:~:text=Higher%2Dorder%20components%20(HOCs),that%20wraps%20the%20original%20component.
 
-
-
 ## Redux Toolkit
+
+- Install @reduxjs/toolkit and react-redux
+- Build our store
+- Connect our store to our app
+- Slice (cartSlice)
+- dispatch(action)
+- Selector
 
 ![Alt text](image-1.png)
 ![Alt text](image-2.png)
 
-  - Install @reduxjs/toolkit and react-redux 
-  - Build our store
-  - Connect our store to our app
-  - Slice (cartSlice)
-  - dispatch(action)
-  - Selector
-
-
-
-
 ```jsx
 import { createSlice } from "@reduxjs/toolkit";
 
-const  cartSlice = createSlice({
-    // It takes a configuration to create a slice
-    name:"cart",
-    initialState:{
-        items:[],
-    },
-    reducers:{
-         addItem: (state, action) => {
-
-         }
-    }
-})
+const cartSlice = createSlice({
+  // It takes a configuration to create a slice
+  name: "cart",
+  initialState: {
+    items: [],
+  },
+  reducers: {
+    addItem: (state, action) => {},
+  },
+});
 ```
 
 ` "addItem" => is an 'action'`
 
-` "(state, action) => {}" =>  this is the 'reducer' function now its modify the state based on the action `
+`"(state, action) => {}" =>  this is the 'reducer' function now its modify the state based on the action`
 
- Vanilla(Older) Redux => DON'T MUTATE STATE, returning was mandatory
-       
+Vanilla(Older) Redux => DON'T MUTATE STATE, returning was mandatory
+
        const newState = [...state];
        newState.items.push(action.payload)
-       return newState; 
+       return newState;
 
        Redux Toolkit uses immer js behind the scene BTS
        It does not give option to mutate
-       We HAVE to mutate the state 
+       We HAVE to mutate the state
 
 ## Immer
 
@@ -437,3 +431,119 @@ The basic idea is that with Immer you will apply all your changes to a temporary
 
 ![Alt text](image-3.png)
 ref : https://immerjs.github.io/immer/
+
+# Types of testing (developer)
+
+- Unit Testing
+- Integration Testing
+- End to End Testing - e2e testing
+
+#### React Testing library we are using for testing in our app
+
+Note : That react testing library uses something known as Jest(Behind The Scene BTS) is a Javascript testing framework which is focus on simplicity
+
+# Setting up Testing in our app
+
+- Install React Testing Library
+- Installed Jest
+- Installed Babel dependencies
+- Configure Babel
+- Configure Parcel Config file to disable default babel transpilation
+- Jest configuration : npx jest --init
+  ![Alt text](image-4.png)
+- Install jsdom library : npm install --save-dev jest-environment-jsdom
+- Install @babel/preset-react - to make JSX work in test cases
+- Include @babel/preset-react inside my babel config
+
+* Why we adding @babel/preset-react because @babel/preset-react basicallly healping a testing library to convert JSX into HTML
+
+- Install @testing-library/jest-dom : for that toBeInTheDocument()
+- command for test : npm run test
+
+- To make your test cases run again and again like HMR add the below script inside package.json
+
+```
+  "script" : {
+  "watch-test": "jest --watch"
+  }
+```
+
+```
+ "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest",
+    "watch-test": "jest --watch"
+  },
+```
+
+- Then run the test case using the following cmd : `npm run watch-test` it will keep running as soon as I make changes into my test case file and save it.
+
+```jsx
+// first test case
+import { sum } from "../sum";
+
+test("Sum function should calculate the sum of two numbers", () => {
+  const result = sum(10, 5);
+
+  // This line is known as Assertion
+  expect(result).toBe(15);
+});
+```
+
+### Test Case Syntax
+
+- Some time we have so many test cases so we make different group of test cases with the help of "describe" block and you have somthing describe block inside describe block like nested block
+
+  `Syntax : describe("",() => {})`
+
+Note : "test" has aliase name which is "it"
+
+`Syntax : it("",() => {}) or test("", () => {})`
+
+```jsx
+// Some time we have so many test cases so we make different group of test cases with the help of "describe" block and you have somthing describe block inside describe block like nested block
+// Syntax : describe("",() => {})
+
+// Note : "test" has aliase name which is "it"
+// Syntax : it("",() => {}) or test("", () => {})
+
+describe("Should load contact us component", () => {
+  it("Should load 2 input boxes inside Contact component", () => {
+    render(<Contact />);
+
+    // Querying
+    const inputBoxes = screen.getAllByRole("textbox");
+
+    // console.log(inputBoxes[0]);
+    // Assertion
+    expect(inputBoxes.length).toBe(2);
+  });
+
+  it("Should load Contact us component", () => {
+    render(<Contact />);
+
+    const heading = screen.getByRole("heading");
+
+    // Assertion
+    expect(heading).toBeInTheDocument();
+  });
+
+  it("Should load button inside Contact Component", () => {
+    render(<Contact />);
+
+    const button = screen.getByRole("button");
+    // const button = screen.getByText("Submit");
+
+    expect(button).toBeInTheDocument();
+  });
+
+  it("Should load input name inside Contact component", () => {
+    render(<Contact />);
+
+    const inputName = screen.getByPlaceholderText("name");
+
+    expect(inputName).toBeInTheDocument();
+  });
+});
+```
