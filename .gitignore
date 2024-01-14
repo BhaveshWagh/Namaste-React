@@ -1,8 +1,15 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 \.parcel-cache
 \coverage
 \node_modules
 \dist
+=======
+/node_modules
+/dist
+.parcel-cache 
+/coverage
+>>>>>>> 325c8badb8b569d93fd9ad66207d02439c90ab42
 =======
 /node_modules
 /dist
